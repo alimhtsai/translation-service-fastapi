@@ -9,7 +9,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 openai.api_key = OPENAI_API_KEY
 
-def perform_translation(task_id: int, text: str, languages: list, db: Session):
+def perform_translation_with_chatgpt(task_id: int, text: str, languages: list[int], db: Session):
     translations = {}
     for lang in languages:
         try:
