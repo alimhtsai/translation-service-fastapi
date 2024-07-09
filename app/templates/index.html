@@ -157,7 +157,7 @@
             progressText.textContent = 'Translation in progress...';
 
             try {
-                const response = await axios.post('localhost:8000/translate', {
+                const response = await axios.post('http://localhost:8000/translate', {
                     text: text,
                     languages: languages
                 });
@@ -176,7 +176,7 @@
 
                 while (progress < 100) {
                     await new Promise(resolve => setTimeout(resolve, 1000));
-                    const resultResponse = await axios.get(`localhost:8000/translate${taskId}`);
+                    const resultResponse = await axios.get(`http://localhost:8000/translate${taskId}`);
                     translationResult = resultResponse.data;
 
                     if (translationResult === 'completed') {
@@ -198,39 +198,39 @@
                 console.error('Error submitting translation', e);
                 alert('Error submitting translation');
             }
+        }
 
-            async function checkTranslationStatus() {
-                const id = document.getElementById('search-id').value;
-                try {
-                    const response = await axios.get(`http://localhost:8000/translate/${id}`);
-                    const translationResult = response.data;
+        async function checkTranslationStatus() {
+            const id = document.getElementById('search-id').value;
+            try {
+                const response = await axios.get(`http://localhost:8000/translate/${id}`);
+                const translationResult = response.data;
 
-                    document.getElementById('translationResults').textContent = JSON.stringify(translationResult.translations, null, 2);
-                    document.getElementById('results').style.display = 'block';
+                document.getElementById('translationResults').textContent = JSON.stringify(translationResult.translations, null, 2);
+                document.getElementById('results').style.display = 'block';
 
-                    // display the translation status
-                    document.getElementById('statusResult').textContent = `Status: ${translationResult.status}`;
-                    document.getElementById('status-container').style.display = 'block';
+                // display the translation status
+                document.getElementById('statusResult').textContent = `Status: ${translationResult.status}`;
+                document.getElementById('status-container').style.display = 'block';
 
-                } catch (e) {
-                    console.error('Error fetching translation status', e);
-                    alert('Error fetching translation status');
-                }
+            } catch (e) {
+                console.error('Error fetching translation status', e);
+                alert('Error fetching translation status');
             }
+        }
 
-            async function checkTranslationContent() {
-                const id = document.getElementById('search-id').value;
-                try {
-                    const response = await axios.get(`http://localhost:8000/translate/content/${id}`);
-                    const translationResult = response.data;
+        async function checkTranslationContent() {
+            const id = document.getElementById('search-id').value;
+            try {
+                const response = await axios.get(`http://localhost:8000/translate/content/${id}`);
+                const translationResult = response.data;
 
-                    document.getElementById('translationResults').textContent = JSON.stringify(translationResult.translations, null, 2);
-                    document.getElementById('results').style.display = 'block';
+                document.getElementById('translationResults').textContent = JSON.stringify(translationResult.translations, null, 2);
+                document.getElementById('results').style.display = 'block';
 
-                } catch (e) {
-                    console.error('Error fetching translation content', e);
-                    alert('Error fetching translation content');
-                }
+            } catch (e) {
+                console.error('Error fetching translation content', e);
+                alert('Error fetching translation content');
             }
         }
     </script>
