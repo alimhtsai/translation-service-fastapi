@@ -1,13 +1,7 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from dotenv import load_dotenv
-
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker, scoped_session
-# from contextlib import asynccontextmanager
-# from my_secrets import DATABASE_URL
 
 # load environment variables from .env file
 load_dotenv()

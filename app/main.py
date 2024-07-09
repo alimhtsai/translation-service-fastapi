@@ -7,9 +7,7 @@ import crud
 import models
 import schemas
 from utils import perform_translation
-from database import get_db, engine, SessionLocal
-from typing import List
-import uuid
+from database import get_db, engine
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
