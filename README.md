@@ -24,9 +24,5 @@
 ├── templates/                          # Front end
            ├── index.html
 
-├── alembic/                            # Handle PostgreSQL database migrations
-
-├── alembic.ini           
-├── Dockerfile
 ├── requirements.txt
 ```
